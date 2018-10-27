@@ -2,8 +2,8 @@ from bs4 import BeautifulSoup
 import subprocess
 import os
 import db
-import models.case
-import models.charge
+from models.case import Case
+from models.charge import Charge
 
 FNULL = open(os.devnull, 'w')
 list_of_href = []
@@ -30,9 +30,11 @@ for row in table.findAll("tr")[1:]:
 
                 soup = BeautifulSoup(data, 'html.parser')
                 table = soup.find("table", { "class" : "searchList" })
-                tbody = table.find("tbody")
-                tr = table.findAll("tr")[1]
-                tds = tr.findAll("td")
+                if table is not None:
+                    tbody = table.find("tbody")
+                    if tbody is not None:
+                        tr = table.findAll("tr")[1]
+                        tds = tr.findAll("td")
 
-                charges.append([tds[x].string for x in [2,3,4,6,7]])
-                session.add(Charge(tca_code=case[0], tca_desc=case[1], filing_date=case[2], violation_date=case[3], disposition_date=case[4], case_id=case_added.id))
+                        charges.append([tds[x].string for x in [2,3,4,6,7]])
+                        session.add(Charge(tca_code=case[0], tca_desc=case[1], filing_date=case[2], violation_date=case[3], disposition_date=case[4], case_id=case_added.id))

@@ -9,7 +9,7 @@ def get_db_conn():
     global __db_sessionmaker
     if not __db_setup:
         __db_setup = True
-        engine = create_engine('sqlite://:memory:', echo=True)
+        engine = create_engine('sqlite:///:memory:', echo=True)
         __db_sessionmaker = sessionmaker(bind=engine)
     return __db_sessionmaker()
 
