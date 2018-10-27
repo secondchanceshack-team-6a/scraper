@@ -5,6 +5,8 @@ __db_setup = False
 __db_sessionmaker = None
 
 def get_db_conn():
+    global __db_setup
+    global __db_sessionmaker
     if not __db_setup:
         __db_setup = True
         engine = create_engine('sqlite://:memory:', echo=True)
