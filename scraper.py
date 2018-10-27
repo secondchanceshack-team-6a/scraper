@@ -10,7 +10,7 @@ list_of_href = []
 cases = []
 charges = []
 
-data = subprocess.Popen(['./montgomery-list.sh', 'aa', "1"], stdout=subprocess.PIPE).stdout
+data = subprocess.Popen(['./list.sh', 'montgomery', 'aa', "1"], stdout=subprocess.PIPE).stdout
 soup = BeautifulSoup(data, 'html.parser')
 table = soup.find("table", { "class" : "searchList" })
 
@@ -26,7 +26,7 @@ for row in table.findAll("tr")[1:]:
             cases.append(case)
             case_added = session.add(Case(name=case[0], case_number=case[1], case_name=case[2], status=case[3], filing_date=case[4], status_date=case[5]))
             for link in a['href'].split('=')[1]:
-                data = subprocess.Popen(['./montgomery-ext.sh', link], stdout=subprocess.PIPE, stderr=FNULL).stdout
+                data = subprocess.Popen(['./ext.sh', 'montgomery', link], stdout=subprocess.PIPE, stderr=FNULL).stdout
 
                 soup = BeautifulSoup(data, 'html.parser')
                 table = soup.find("table", { "class" : "searchList" })
