@@ -6,12 +6,12 @@ class Case(Base):
     __tablename__ = 'cases'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    case_number = Column(String, unique=True)
-    case_name = Column(String)
-    status = Column(String)
-    filing_date = Column(String)
-    status_date = Column(String)
+    name = Column(String, nullable=False)
+    case_number = Column(String, unique=True, nullable=False)
+    case_name = Column(String, nullable=False)
+    status = Column(String, nullable=False)
+    filing_date = Column(String, nullable=False)
+    status_date = Column(String, nullable=False)
 
     def __repr__(self):
             return "lol"
