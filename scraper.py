@@ -34,3 +34,5 @@ for row in table.findAll("tr")[1:]:
     print(case)
     print(charge)
     session.add(Charge(tca_code=charge[0], tca_desc=charge[1], filing_date=charge[2], violation_date=charge[3], disposition_date=charge[4], case_id=case.id))
+
+session.commit()
