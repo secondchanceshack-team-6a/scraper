@@ -9,11 +9,12 @@ class Case(Base):
 
     id = Column(Integer, Sequence('case_id_seq'), primary_key=True)
     name = Column(String, nullable=False)
-    case_number = Column(String, unique=True, nullable=False)
+    case_number = Column(String, nullable=False)
     case_name = Column(String, nullable=False)
     status = Column(String, nullable=False)
     filing_date = Column(String, nullable=False)
     status_date = Column(String, nullable=False)
+    url_id = Column(String, unique=True)
 
     def __repr__(self):
             return "lol"
