@@ -19,3 +19,4 @@ SELECT ca.id as cases_id,
 FROM cases as ca
   INNER JOIN charges as ch
 ON cases_id = charge_case_id;
+.quit
